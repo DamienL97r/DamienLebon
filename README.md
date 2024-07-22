@@ -20,8 +20,8 @@ symfony console doctrine:database:create
 
 ```bash
 composer install
-// npm install
-// npm run build
+npm install
+npm run build / watch
 symfony serve
 ```
 

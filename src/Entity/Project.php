@@ -40,6 +40,10 @@ class Project
     #[ORM\ManyToMany(targetEntity: Categorie::class, mappedBy: 'projects')]
     private Collection $categories;
 
+    #[ORM\ManyToOne(inversedBy: 'projects')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -145,6 +149,18 @@ class Project
         if ($this->categories->removeElement($category)) {
             $category->removeProject($this);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

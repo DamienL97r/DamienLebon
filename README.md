@@ -7,6 +7,7 @@ DamienLebon un site web présentant mon portfolio et mes expériences profession
 composer require friendsofphp/php-cs-fixer --dev
 composer require --dev orm-fixtures
 composer require fakerphp/faker
+composer require symfony/webpack-encore-bundle
 ```
 
 ## Création BDD du projet
@@ -19,8 +20,8 @@ symfony console doctrine:database:create
 
 ```bash
 composer install
-// npm install
-// npm run build
+npm install
+npm run build / watch
 symfony serve
 ```
 

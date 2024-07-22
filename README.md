@@ -7,6 +7,7 @@ DamienLebon un site web présentant mon portfolio et mes expériences profession
 composer require friendsofphp/php-cs-fixer --dev
 composer require --dev orm-fixtures
 composer require fakerphp/faker
+composer require symfony/webpack-encore-bundle
 ```
 
 ## Création BDD du projet

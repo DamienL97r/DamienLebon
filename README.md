@@ -7,6 +7,12 @@ DamienLebon un site web présentant mon portfolio et mes expériences profession
 composer require friendsofphp/php-cs-fixer --dev
 ```
 
+## Création BDD du projet
+
+```bash
+symfony console doctrine:database:create
+```
+
 ## Installation du projet
 
 ```bash

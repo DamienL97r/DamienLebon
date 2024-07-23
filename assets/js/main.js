@@ -25,20 +25,22 @@ window.location = link.href; // Redirigez vers la page liée à l'élément "a" 
 
 
 
-    /*Toggle slide du panneau de controle */
+/* Toggle slide du panneau de contrôle */
+var isSlideOpen = false;
 
-    var isSlideOpen = false;
-function toggleSlide(){
+function toggleSlide() {
     var slide = document.getElementById("panneau-controle-couleur");
-    if(!isSlideOpen){
+    if (!isSlideOpen) {
         slide.style.width = "60px";
         slide.style.right = "0px";
         isSlideOpen = true;
-    }else{
+    } else {
         slide.style.right = "-80px";
         isSlideOpen = false;
     }
 }
+
+window.toggleSlide = toggleSlide;
 
 
 /* Panneau de contrôle des couleurs */

@@ -11,9 +11,16 @@
     left: 5%
     z-index: -1
 
+    @media (max-width: 600px)
+        width: 120px
+        height: 120px
+
     img 
         height: 160px
         z-index: 3
+
+        @media (max-width: 600px)
+            width: 120px
 
     .secondary-photo-container 
         position: absolute
@@ -22,3 +29,7 @@
         border-radius: 68% 32% 74% 26% / 28% 75% 25% 72% 
         opacity: 0.8
         background-color: #252525
+
+        @media (max-width: 600px)
+            width: 110px
+            height: 90px

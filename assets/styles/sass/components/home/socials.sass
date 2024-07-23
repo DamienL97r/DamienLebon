@@ -10,11 +10,25 @@
     justify-content: center
     margin-top: 0
 
+    @media (max-width: 600px)
+        position: relative
+        padding: 0
+        margin: 0
+        height: 50px
+        display: flex
+        flex-direction: row
+
     #mail
         display: none
 
+        @media (max-width: 600px)
+            display: flex
+
     #phone
         display: none
+
+        @media (max-width: 600px)
+            display: flex
 
 
 .social-media

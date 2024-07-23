@@ -7,5 +7,6 @@
  */
 import './styles/app.sass';
 import './js/main.js';
+import './js/fade-in.js';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

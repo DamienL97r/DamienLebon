@@ -18,7 +18,7 @@ var slideIn = document.querySelector(".slide-in");
 slideIn.style.left = "0%";
 setTimeout(function() {
 window.location = link.href; // Redirigez vers la page liée à l'élément "a" cliqué
-}, 1500);
+}, 1350);
 });
 }
 

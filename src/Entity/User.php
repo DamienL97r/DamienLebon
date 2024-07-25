@@ -7,11 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[Vich\Uploadable]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -55,8 +58,51 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $linkedin = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $cv = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cv = '';
+
+    #[Vich\UploadableField(mapping: 'cv_file', fileNameProperty: 'cv')]
+    private ?File $cvFile = null;
+
+
+    // Ajoutez cette méthode pour éviter la sérialisation de certaines propriétés
+    public function __serialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'roles' => $this->roles,
+            'password' => $this->password,
+            'phoneNumber' => $this->phoneNumber,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'dateOfBirth' => $this->dateOfBirth,
+            'description' => $this->description,
+            'github' => $this->github,
+            'linkedin' => $this->linkedin,
+            'cv' => $this->cv,
+            'location' => $this->location,
+            'profileImage' => $this->profileImage,
+        ];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        $this->id = $data['id'] ?? null;
+        $this->email = $data['email'] ?? null;
+        $this->roles = $data['roles'] ?? [];
+        $this->password = $data['password'] ?? null;
+        $this->phoneNumber = $data['phoneNumber'] ?? null;
+        $this->firstname = $data['firstname'] ?? null;
+        $this->lastname = $data['lastname'] ?? null;
+        $this->dateOfBirth = $data['dateOfBirth'] ?? null;
+        $this->description = $data['description'] ?? null;
+        $this->github = $data['github'] ?? null;
+        $this->linkedin = $data['linkedin'] ?? null;
+        $this->cv = $data['cv'] ?? '';
+        $this->location = $data['location'] ?? null;
+        $this->profileImage = $data['profileImage'] ?? null;
+    }
 
     /**
      * @var Collection<int, Project>
@@ -246,9 +292,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->cv;
     }
 
-    public function setCv(string $cv): static
+    public function setCv(?string $cv): static
     {
-        $this->cv = $cv;
+        $this->cv = $cv ?? '';
 
         return $this;
     }
@@ -335,5 +381,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->profileImage = $profileImage;
 
         return $this;
+    }
+
+    public function setCvFile(?File $cv = null): void
+    {
+        $this->cvFile = $cv;
+        if (null !== $cv) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->firstname = $this->getFirstname();
+        }
+    }
+
+    public function getCvFile(): ?File
+    {
+        return $this->cvFile;
     }
 }

@@ -15,7 +15,7 @@
         <div class="gauche-aPropos">
             {{ user.description | raw }}
 
-            <a href="{{ asset('assets/cv-pdf/CV-DevWeb-DamienLebon2024.pdf')}}" download="CV-Damien-Lebon">
+            <a href="{{ vich_uploader_asset(user, 'cvFile') }}" download="CV-Damien-Lebon">
                 <button class="bg-color-hov"><img src="{{ asset('assets/images/telecharger-arrow.png')}}" alt="">Télécharger mon CV</button>
             </a>
             

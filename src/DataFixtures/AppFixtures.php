@@ -28,10 +28,12 @@ class AppFixtures extends Fixture
             ->setPhoneNumber($faker->phoneNumber())
             ->setDescription($faker->text(150))
             ->setDateOfBirth($faker->dateTimeBetween('-6 month', 'now'))
+            ->setLocation('Lyon, France')
             ->setGithub('Github')
             ->setLinkedin('Linkedin')
             ->setRoles(['ROLE_ADMIN'])
-            ->setFile('placeholder.jpg')
+            ->setProfileImage('photo.png')
+            ->setCv('cv.pdf')
             ->setPassword('$2y$13$Ub9L7e.BCpEe36vQKnURwukWXTY5O0d3/H///iIgdUGp7aMv6.khK'); // mdp = user
 
         $manager->persist($user);

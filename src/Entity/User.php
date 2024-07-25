@@ -56,7 +56,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $linkedin = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $file = null;
+    private ?string $cv = null;
 
     /**
      * @var Collection<int, Project>
@@ -69,6 +69,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(targetEntity: Experience::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $experiences;
+
+    #[ORM\Column(length: 255)]
+    private ?string $location = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $profileImage = null;
 
     public function __construct()
     {
@@ -235,14 +241,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFile(): ?string
+    public function getCv(): ?string
     {
-        return $this->file;
+        return $this->cv;
     }
 
-    public function setFile(string $file): static
+    public function setCv(string $cv): static
     {
-        $this->file = $file;
+        $this->cv = $cv;
 
         return $this;
     }
@@ -303,6 +309,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $experience->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(string $location): static
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    public function getProfileImage(): ?string
+    {
+        return $this->profileImage;
+    }
+
+    public function setProfileImage(string $profileImage): static
+    {
+        $this->profileImage = $profileImage;
 
         return $this;
     }

@@ -8,6 +8,7 @@ composer require friendsofphp/php-cs-fixer --dev
 composer require --dev orm-fixtures
 composer require fakerphp/faker
 composer require symfony/webpack-encore-bundle
+composer require easycorp/easyadmin-bundle
 ```
 
 ## Création BDD du projet

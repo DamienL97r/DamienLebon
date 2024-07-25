@@ -7,6 +7,29 @@
 body
     background-color: #171717
 
+.header-page 
+    text-align: center
+    padding-top: 50px
+    margin-bottom: 80px
+    color: #f5f5f5
+
+    h1 
+        margin-bottom: 1.3rem
+        font-size: 2.5rem
+
+        @media (max-width: 600px)
+            margin-bottom: 1.3rem
+            padding-left: 15px
+            font-size: 2.01rem
+            text-align: left
+
+    p 
+        margin-bottom: 1.3rem
+        font-size: 1.2rem
+
+        @media (max-width: 600px)
+            padding: 0 15px
+
 .fade-in 
     opacity: 0
     transition: opacity 1.5s
@@ -18,3 +41,21 @@ body
     position: fixed
     left: -100%
     transition: left 1.5s 
+
+
+    /* Barre de défilement */
+::-webkit-scrollbar
+    width: 10px
+
+/* Piste de la barre de défilement */
+::-webkit-scrollbar-track 
+    background: #f1f1f100
+
+
+/* Curseur de la barre de défilement */
+::-webkit-scrollbar-thumb
+    background: #888
+
+/* Curseur au survol de la barre de défilement */
+::-webkit-scrollbar-thumb:hover
+    background: #555

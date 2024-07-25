@@ -6,21 +6,14 @@
 <div class="aPropos">
 
     <div class="header-page">
-    <h1>À propos de <span class="color">moi</span></h1>
+    <h1>À propos de <span class="color">moi {{ user.firstname }}</span></h1>
     <p><span class="color">Qui-</span>suis-je?</p>
     </div>  
 
     <div class="container-aPropos">
 
         <div class="gauche-aPropos">
-            <h3>Damien Lebon, 23 ans <span class="color">développeur web et web mobile</span> à Lyon, France</h3>
-
-            <p>En reconversion professionnelle depuis 2 ans, j'exerçais le métier de diététicien avant de décider de me tourner vers les métiers du web.</p>
-
-            <p>C'est ainsi que j'ai suivi une préqualification web à l'IFPA, situé à Miribel dans l'Ain (01), où j'ai pu initier mon apprentissage des langages tels que <span class="color">HTML, CSS, Javascript, PHP</span>. 
-                J'ai également acquis des connaissances sur des concepts fondamentaux tels que l'<span class="color">algorithmie</span>, ainsi que sur les méthodes de travail en environnement <span class="color">AGILE (scrum)</span>. De plus, j'ai développé des compétences en gestion de projet en utilisant des outils tels que <span class="color">Trello, Notion, Google Workspace</span>.</p>
-
-            <p>Après avoir terminé ma formation chez Human Booster à Villeurbanne (Lyon), je suis désormais diplômé en tant que <span class="color">développeur web et web mobile</span>. Je suis à la recherche d'opportunités professionnelles pour mettre en pratique mes compétences dans le développement web.</p>
+            {{ user.description | raw }}
 
             <a href="{{ asset('assets/cv-pdf/CV-DevWeb-DamienLebon2024.pdf')}}" download="CV-Damien-Lebon">
                 <button class="bg-color-hov"><img src="{{ asset('assets/images/telecharger-arrow.png')}}" alt="">Télécharger mon CV</button>

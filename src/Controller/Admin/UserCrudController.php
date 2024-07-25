@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class UserCrudController extends AbstractCrudController
@@ -28,8 +29,8 @@ class UserCrudController extends AbstractCrudController
             DateField::new('dateOfBirth'),
             TextField::new('phoneNumber'),
             TextareaField::new('description'),
-            TextareaField::new('github'),
-            TextareaField::new('linkedin'),
+            TextField::new('github'),
+            TextField::new('linkedin'),
             // TextField::new('imageFile')
             //     ->setFormType(VichFileType::class)
             //     ->hideOnIndex(),

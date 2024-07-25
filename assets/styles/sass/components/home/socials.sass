@@ -1,0 +1,53 @@
+.social-media-links
+    height: 70%
+    position: absolute
+    top: 0
+    z-index: 2
+    padding: 60px
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    margin-top: 0
+
+    @media (max-width: 600px)
+        position: relative
+        padding: 0
+        margin: 0
+        height: 50px
+        display: flex
+        flex-direction: row
+
+    #mail
+        display: none
+
+        @media (max-width: 600px)
+            display: flex
+
+    #phone
+        display: none
+
+        @media (max-width: 600px)
+            display: flex
+
+
+.social-media
+    color: rgb(255, 255, 255)
+    width:  25px
+    opacity: .6
+    margin: 8px
+    transition: all .4s ease
+
+    &:hover
+        opacity: 1
+        transform: scale(1.1)
+
+.contactpic 
+    margin:10px
+    height:28px
+    opacity: .6
+    transition: all .4s ease
+
+    &:hover
+        opacity: 1
+        transform: scale(1.1)

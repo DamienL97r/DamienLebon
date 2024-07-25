@@ -1,0 +1,79 @@
+/*Mes services*/
+
+.containerCard-service 
+    width: 100%
+    height: max-content
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    justify-content: space-around
+    text-align: center
+
+.card-service 
+    width: 280px
+    height: 260px
+    margin: 5px
+    margin-bottom: 100px
+    border-radius: 15px
+    background-color: #252525
+    position: relative
+    transform: translateY(0)
+    transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out, all 0.5s ease-in-out
+    overflow: hidden
+
+    &:hover 
+        height: 550px
+        transform: translateY(-5px)
+        z-index: 2
+
+        .service-description
+            opacity: 1
+
+        .icon-arrow
+            opacity: 0
+
+    @media (max-width: 600px)
+        width: 100%
+        margin: 20px
+
+.service-img 
+    margin: 20px
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    h2 
+        font-size: 1.4rem
+
+    .icon-arrow 
+        opacity: 1
+        transition: opacity 0.5s ease-in-out
+        position: absolute
+        width:  35px
+        height: 35px
+        bottom: -45px
+
+    .icon-service 
+        margin-bottom: 20px
+        box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.322)
+        border-radius: 30px
+        padding: 20px
+        height: 100px
+
+.service-description 
+    opacity: 0
+    transition: opacity 0.5s ease-in-out
+    height: 290px
+    display: flex
+    flex-direction: column
+    justify-content: space-evenly
+
+
+.service-description-content 
+    display: flex
+    align-items: center
+
+    img 
+        margin: 10px 20px
+        height: 35px

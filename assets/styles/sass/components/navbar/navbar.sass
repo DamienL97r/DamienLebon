@@ -1,0 +1,136 @@
+.navbar 
+    display: block
+
+#menu 
+    position: fixed
+    top: -100%
+    left: 0
+    transition: top 1s ease-in-out
+    background-color: rgb(0, 0, 0)
+    height: 100%
+    width: 100%
+    text-align: center
+    z-index: 3
+
+
+    &.visible
+        top: 0
+        display: flex
+        flex-direction: column
+        position: fixed
+        background-color: rgb(0, 0, 0)
+        height: 100%
+        width: 100%
+        text-align: center
+        z-index: 3
+        transition: top 1s ease-in-out
+
+nav 
+    justify-content: center
+    list-style: none
+
+.onglet 
+    text-decoration: none
+    color: rgb(158, 158, 158)
+    font-size: 2.5rem
+    font-weight: 900
+    display: block 
+    margin-top: 0.5rem
+    padding: 1rem
+    z-index: 5
+
+    &:hover
+        /*text-shadow: 0px 0px 10px rgb(0, 0, 0); */
+        text-shadow: 5px 5px 20px rgb(27, 27, 27)
+
+        + .hover-text
+            display: block
+
+
+.hover-text 
+    color: rgba(133, 133, 133, 0.151)
+    position: absolute
+    width: 100%
+    top: 40%
+    transform: translateY(-50%)
+    left: 50%
+    transform: translateX(-50%)
+    font-size: 5rem
+    display: none
+    font-family: Monoton 
+    pointer-events: none
+
+    @media (max-width: 600px)
+        font-size: 4rem
+
+
+/*Bouton du menu*/
+
+/*Enlever le style du bouton*/
+
+#menu-toggle-btn
+    position: fixed 
+    z-index: 4
+    right: 4%
+    top: 2%
+    border: none
+    background-color: rgba(255, 255, 255, 0)
+    cursor: pointer
+
+    &:hover .line
+        transition: 0.5s ease-in-out
+        transform-origin: center
+        animation: rotate 4s ease-in-out
+        animation-iteration-count: infinite
+
+
+/* définir la classe d'animation */
+@keyframes rotate 
+    10%, 90% 
+        transform: rotate(5deg)
+    20%, 80% 
+        transform: rotate(-5deg)
+    30%, 50%, 70% 
+        transform: rotate(5deg)
+    40%, 60% 
+        transform: rotate(-5deg)
+
+
+
+
+
+
+/* Transition de l'icone menu hamburger/croix */
+
+.line 
+    fill: none
+    stroke: rgb(145, 145, 145)
+    stroke-width: 6
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1)
+
+    &.line1 
+        stroke-dasharray: 60 207
+
+    &.line2 
+        stroke-dasharray: 60 60
+
+    &.line3 
+        stroke-dasharray: 60 207
+
+
+
+.opened 
+    .line1 
+        stroke-dasharray: 90 207
+        stroke-dashoffset: -134
+
+    .line2 
+        stroke-dasharray: 1 60
+        stroke-dashoffset: -30
+
+    .line3 
+        stroke-dasharray: 90 207
+        stroke-dashoffset: -134
+
+    .line1, .line2, .line3 
+        stroke-width: 6

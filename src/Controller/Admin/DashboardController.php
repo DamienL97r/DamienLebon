@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Categorie;
+use App\Entity\CV;
 use App\Entity\Experience;
 use App\Entity\Project;
 use App\Entity\User;
@@ -45,9 +46,12 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::subMenu('A propos', 'fas fa-cog')->setSubItems([
+            MenuItem::linkToCrud('User', 'fas fa-cog', User::class),
+            MenuItem::linkToCrud('CV', 'fas fa-cog', CV::class),
+        ]);
         // yield MenuItem::linkToCrud('Expériences', 'fas fa-newspaper', Experience::class);
         // yield MenuItem::linkToCrud('Projets', 'fas fa-palette', Project::class);
         // yield MenuItem::linkToCrud('Catégorie', 'fas fa-comments', Categorie::class);
-        yield MenuItem::linkToCrud('Paramètres', 'fas fa-cog', User::class);
     }
 }

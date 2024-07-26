@@ -6,7 +6,7 @@
 <div class="aPropos">
 
     <div class="header-page">
-    <h1>À propos de <span class="color">moi {{ user.firstname }}</span></h1>
+    <h1>À propos de <span class="color">moi</span></h1>
     <p><span class="color">Qui-</span>suis-je?</p>
     </div>  
 
@@ -15,7 +15,7 @@
         <div class="gauche-aPropos">
             {{ user.description | raw }}
 
-            <a href="{{ vich_uploader_asset(user, 'cvFile') }}" download="CV-Damien-Lebon">
+            <a href="{{ vich_uploader_asset(cv, 'cvFile') }}" download="CV-Damien-Lebon">
                 <button class="bg-color-hov"><img src="{{ asset('assets/images/telecharger-arrow.png')}}" alt="">Télécharger mon CV</button>
             </a>
             

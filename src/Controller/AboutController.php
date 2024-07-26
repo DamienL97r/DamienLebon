@@ -16,6 +16,7 @@ class AboutController extends AbstractController
     {
         return $this->render('about/index.html.twig', [
             'user' => $user->getDev(),
+            'cv' => $user->getDev()->getCV(),
         ]);
     }
 }

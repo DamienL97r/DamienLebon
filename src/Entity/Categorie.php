@@ -27,9 +27,19 @@ class Categorie
     #[ORM\ManyToMany(targetEntity: Project::class, inversedBy: 'categories')]
     private Collection $projects;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
+    /**
+     * @var Collection<int, Hardskills>
+     */
+    #[ORM\OneToMany(targetEntity: Hardskills::class, mappedBy: 'categorie')]
+    private Collection $hardskills;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
+        $this->hardskills = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,6 +91,48 @@ class Categorie
     public function removeProject(Project $project): static
     {
         $this->projects->removeElement($project);
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Hardskills>
+     */
+    public function getHardskills(): Collection
+    {
+        return $this->hardskills;
+    }
+
+    public function addHardskill(Hardskills $hardskill): static
+    {
+        if (!$this->hardskills->contains($hardskill)) {
+            $this->hardskills->add($hardskill);
+            $hardskill->setCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHardskill(Hardskills $hardskill): static
+    {
+        if ($this->hardskills->removeElement($hardskill)) {
+            // set the owning side to null (unless already changed)
+            if ($hardskill->getCategorie() === $this) {
+                $hardskill->setCategorie(null);
+            }
+        }
 
         return $this;
     }

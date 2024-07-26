@@ -3,6 +3,7 @@
 namespace App\EventSubscriber;
 
 use App\Entity\CV;
+use App\Entity\ProfileImage;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -20,17 +21,33 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     {
         return [
             BeforeEntityPersistedEvent::class => [
-                ['setUser', 10],
+                ['setCVUser', 10],
+                ['setProfileImageUser', 10],
             ],
         ];
     }
 
     // CV
-    public function setUser(BeforeEntityPersistedEvent $event)
+    public function setCVUser(BeforeEntityPersistedEvent $event)
     {
         $entity = $event->getEntityInstance();
 
         if (!($entity instanceof CV)) {
+            return;
+        }
+
+        if (null === $entity->getUser()) {
+            $user = $this->security->getUser();
+            $entity->setUser($user);
+        }
+    }
+
+    // ProfileImage
+    public function setProfileImageUser(BeforeEntityPersistedEvent $event)
+    {
+        $entity = $event->getEntityInstance();
+
+        if (!($entity instanceof ProfileImage)) {
             return;
         }
 

@@ -70,11 +70,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $location = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $profileImage = null;
-
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?CV $cV = null;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?ProfileImage $profileImage = null;
 
     public function __construct()
     {
@@ -313,18 +313,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getProfileImage(): ?string
-    {
-        return $this->profileImage;
-    }
-
-    public function setProfileImage(string $profileImage): static
-    {
-        $this->profileImage = $profileImage;
-
-        return $this;
-    }
-
     public function getCV(): ?CV
     {
         return $this->cV;
@@ -343,6 +331,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->cV = $cV;
+
+        return $this;
+    }
+
+    public function getProfileImage(): ?ProfileImage
+    {
+        return $this->profileImage;
+    }
+
+    public function setProfileImage(?ProfileImage $profileImage): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($profileImage === null && $this->profileImage !== null) {
+            $this->profileImage->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($profileImage !== null && $profileImage->getUser() !== $this) {
+            $profileImage->setUser($this);
+        }
+
+        $this->profileImage = $profileImage;
 
         return $this;
     }

@@ -5,8 +5,8 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     cv_file: \uploads\images\cv_file
+    profile_image: \uploads\images\profile_image
     # blogpost_images: \uploads\images\blogposts
-    # profile_picture: \uploads\images\profilePicture
 
 services:
     # default configuration for services in *this* file

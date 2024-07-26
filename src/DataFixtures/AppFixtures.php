@@ -32,7 +32,6 @@ class AppFixtures extends Fixture
             ->setGithub('Github')
             ->setLinkedin('Linkedin')
             ->setRoles(['ROLE_ADMIN'])
-            ->setProfileImage('photo.png')
             ->setPassword('$2y$13$Ub9L7e.BCpEe36vQKnURwukWXTY5O0d3/H///iIgdUGp7aMv6.khK'); // mdp = user
 
         $manager->persist($user);

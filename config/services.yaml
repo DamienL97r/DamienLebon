@@ -6,6 +6,7 @@
 parameters:
     cv_file: \uploads\images\cv_file
     profile_image: \uploads\images\profile_image
+    categorie_file: \uploads\images\categorie_file
     # blogpost_images: \uploads\images\blogposts
 
 services:

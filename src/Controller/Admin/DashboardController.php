@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Categorie;
 use App\Entity\CV;
 use App\Entity\Experience;
+use App\Entity\Hardskills;
 use App\Entity\ProfileImage;
 use App\Entity\Project;
 use App\Entity\User;
@@ -20,22 +21,6 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         return $this->render('admin/dashboard.html.twig');
-
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
-
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        // return $this->render('some/path/my-dashboard.html.twig');
     }
 
     public function configureDashboard(): Dashboard
@@ -51,6 +36,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Utilisateur', 'fas fa-cog', User::class),
             MenuItem::linkToCrud('CV', 'fas fa-cog', CV::class),
             MenuItem::linkToCrud('Photo', 'fas fa-cog', ProfileImage::class),
+            MenuItem::linkToCrud('Hardskills', 'fas fa-comments', Hardskills::class),
         ]);
         // yield MenuItem::linkToCrud('Expériences', 'fas fa-newspaper', Experience::class);
         // yield MenuItem::linkToCrud('Projets', 'fas fa-palette', Project::class);

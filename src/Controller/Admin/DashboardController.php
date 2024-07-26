@@ -8,6 +8,7 @@ use App\Entity\Experience;
 use App\Entity\Hardskills;
 use App\Entity\ProfileImage;
 use App\Entity\Project;
+use App\Entity\Softskills;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -37,6 +38,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('CV', 'fas fa-cog', CV::class),
             MenuItem::linkToCrud('Photo', 'fas fa-cog', ProfileImage::class),
             MenuItem::linkToCrud('Hardskills', 'fas fa-comments', Hardskills::class),
+            MenuItem::linkToCrud('Softskills', 'fas fa-comments', Softskills::class),
         ]);
         // yield MenuItem::linkToCrud('Expériences', 'fas fa-newspaper', Experience::class);
         // yield MenuItem::linkToCrud('Projets', 'fas fa-palette', Project::class);

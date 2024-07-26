@@ -76,10 +76,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?ProfileImage $profileImage = null;
 
+    /**
+     * @var Collection<int, Softskills>
+     */
+    #[ORM\OneToMany(targetEntity: Softskills::class, mappedBy: 'user')]
+    private Collection $softskills;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
         $this->experiences = new ArrayCollection();
+        $this->softskills = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -353,6 +360,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->profileImage = $profileImage;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Softskills>
+     */
+    public function getSoftskills(): Collection
+    {
+        return $this->softskills;
+    }
+
+    public function addSoftskill(Softskills $softskill): static
+    {
+        if (!$this->softskills->contains($softskill)) {
+            $this->softskills->add($softskill);
+            $softskill->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSoftskill(Softskills $softskill): static
+    {
+        if ($this->softskills->removeElement($softskill)) {
+            // set the owning side to null (unless already changed)
+            if ($softskill->getUser() === $this) {
+                $softskill->setUser(null);
+            }
+        }
 
         return $this;
     }

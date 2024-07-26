@@ -34,12 +34,12 @@ class ProfileImageCrudController extends AbstractCrudController
         ];
     }
 
-    // public function configureActions(Actions $actions): Actions
-    // {
-    //     return $actions
-    //         ->add(Crud::PAGE_INDEX, Action::DETAIL)
-    //         ->disable(Action::DELETE, Action::NEW);
-    // }
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            ->disable(Action::DELETE, Action::NEW);
+    }
 
     public function configureCrud(Crud $crud): Crud
     {

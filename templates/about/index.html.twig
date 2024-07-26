@@ -133,11 +133,9 @@
     </div>
 
     <!--Mes services-->
-
     <div class="header-page">
         <h1>Mes <span class="color">Hard Skills</span></h1>
     </div> 
-
     <div class="containerCard-service">
 
         <div class="card-service bg-color-hov">
@@ -272,23 +270,13 @@
     </div>
     
     <!--Compétences-->
-    
     <div class="header-page">
         <h1>Mes <span class="color">Soft Skills</span></h1>
     </div> 
-
     <div class="container-competences">
-
-        <h2 class="bg-color-hov">Autonome</h2>
-
-        <h2 class="bg-color-hov">Curieux</h2>
-
-        <h2 class="bg-color-hov">Positif</h2>
-
-        <h2 class="bg-color-hov">Rigoureux</h2>
-
+        {% for softSkill in softSkills %}
+            <h2 class="bg-color-hov">{{ softSkill.name }}</h2>
+        {% endfor %}
     </div>
-
-
 </div>
 {% endblock %}

@@ -41,7 +41,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Softskills', 'fas fa-comments', Softskills::class),
         ]);
         yield MenuItem::linkToCrud('Expériences', 'fas fa-newspaper', Experience::class);
-        // yield MenuItem::linkToCrud('Projets', 'fas fa-palette', Project::class);
+        yield MenuItem::linkToCrud('Projets', 'fas fa-palette', Project::class);
         yield MenuItem::linkToCrud('Catégorie', 'fas fa-comments', Categorie::class);
     }
 }

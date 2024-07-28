@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
+#[Vich\Uploadable]
 class Project
 {
     #[ORM\Id]
@@ -46,6 +49,9 @@ class Project
 
     #[ORM\Column(length: 255)]
     private ?string $file = null;
+
+    #[Vich\UploadableField(mapping: 'project_file', fileNameProperty: 'file')]
+    private ?File $projectFile = null;
 
     public function __construct()
     {
@@ -178,5 +184,20 @@ class Project
         $this->file = $file;
 
         return $this;
+    }
+
+    public function setProjectFile(?File $file = null): void
+    {
+        $this->projectFile = $file;
+        if (null !== $file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->CreatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getProjectFile(): ?File
+    {
+        return $this->projectFile;
     }
 }

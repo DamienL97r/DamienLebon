@@ -5,6 +5,7 @@ namespace App\EventSubscriber;
 use App\Entity\CV;
 use App\Entity\Experience;
 use App\Entity\ProfileImage;
+use App\Entity\Project;
 use App\Entity\Softskills;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -27,6 +28,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                 ['setProfileImageUser', 10],
                 ['setSoftskillsUser', 10],
                 ['setExperienceUser', 10],
+                ['setProjectUser', 10],
             ],
         ];
     }
@@ -82,6 +84,21 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $entity = $event->getEntityInstance();
 
         if (!($entity instanceof Experience)) {
+            return;
+        }
+
+        if (null === $entity->getUser()) {
+            $user = $this->security->getUser();
+            $entity->setUser($user);
+        }
+    }
+
+    // Project
+    public function setProjectUser(BeforeEntityPersistedEvent $event)
+    {
+        $entity = $event->getEntityInstance();
+
+        if (!($entity instanceof Project)) {
             return;
         }
 

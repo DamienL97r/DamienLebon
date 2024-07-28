@@ -31,13 +31,13 @@ class CategorieRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Categorie
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findHardskills(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.tag = :val')
+            ->setParameter('val', 'Hardskill')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

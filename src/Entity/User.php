@@ -55,9 +55,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $linkedin = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $file = null;
-
     /**
      * @var Collection<int, Project>
      */
@@ -70,10 +67,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Experience::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $experiences;
 
+    #[ORM\Column(length: 255)]
+    private ?string $location = null;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?CV $cV = null;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?ProfileImage $profileImage = null;
+
+    /**
+     * @var Collection<int, Softskills>
+     */
+    #[ORM\OneToMany(targetEntity: Softskills::class, mappedBy: 'user')]
+    private Collection $softskills;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
         $this->experiences = new ArrayCollection();
+        $this->softskills = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -235,18 +248,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFile(): ?string
-    {
-        return $this->file;
-    }
-
-    public function setFile(string $file): static
-    {
-        $this->file = $file;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Project>
      */
@@ -301,6 +302,92 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($experience->getUser() === $this) {
                 $experience->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(string $location): static
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    public function getCV(): ?CV
+    {
+        return $this->cV;
+    }
+
+    public function setCV(?CV $cV): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($cV === null && $this->cV !== null) {
+            $this->cV->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($cV !== null && $cV->getUser() !== $this) {
+            $cV->setUser($this);
+        }
+
+        $this->cV = $cV;
+
+        return $this;
+    }
+
+    public function getProfileImage(): ?ProfileImage
+    {
+        return $this->profileImage;
+    }
+
+    public function setProfileImage(?ProfileImage $profileImage): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($profileImage === null && $this->profileImage !== null) {
+            $this->profileImage->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($profileImage !== null && $profileImage->getUser() !== $this) {
+            $profileImage->setUser($this);
+        }
+
+        $this->profileImage = $profileImage;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Softskills>
+     */
+    public function getSoftskills(): Collection
+    {
+        return $this->softskills;
+    }
+
+    public function addSoftskill(Softskills $softskill): static
+    {
+        if (!$this->softskills->contains($softskill)) {
+            $this->softskills->add($softskill);
+            $softskill->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSoftskill(Softskills $softskill): static
+    {
+        if ($this->softskills->removeElement($softskill)) {
+            // set the owning side to null (unless already changed)
+            if ($softskill->getUser() === $this) {
+                $softskill->setUser(null);
             }
         }
 

@@ -9,6 +9,7 @@ composer require --dev orm-fixtures
 composer require fakerphp/faker
 composer require symfony/webpack-encore-bundle
 composer require easycorp/easyadmin-bundle
+composer require vich/uploader-bundle
 ```
 
 ## Création BDD du projet

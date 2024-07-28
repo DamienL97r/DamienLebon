@@ -13,16 +13,9 @@
     <div class="container-aPropos">
 
         <div class="gauche-aPropos">
-            <h3>Damien Lebon, 23 ans <span class="color">développeur web et web mobile</span> à Lyon, France</h3>
+            {{ user.description | raw }}
 
-            <p>En reconversion professionnelle depuis 2 ans, j'exerçais le métier de diététicien avant de décider de me tourner vers les métiers du web.</p>
-
-            <p>C'est ainsi que j'ai suivi une préqualification web à l'IFPA, situé à Miribel dans l'Ain (01), où j'ai pu initier mon apprentissage des langages tels que <span class="color">HTML, CSS, Javascript, PHP</span>. 
-                J'ai également acquis des connaissances sur des concepts fondamentaux tels que l'<span class="color">algorithmie</span>, ainsi que sur les méthodes de travail en environnement <span class="color">AGILE (scrum)</span>. De plus, j'ai développé des compétences en gestion de projet en utilisant des outils tels que <span class="color">Trello, Notion, Google Workspace</span>.</p>
-
-            <p>Après avoir terminé ma formation chez Human Booster à Villeurbanne (Lyon), je suis désormais diplômé en tant que <span class="color">développeur web et web mobile</span>. Je suis à la recherche d'opportunités professionnelles pour mettre en pratique mes compétences dans le développement web.</p>
-
-            <a href="{{ asset('assets/cv-pdf/CV-DevWeb-DamienLebon2024.pdf')}}" download="CV-Damien-Lebon">
+            <a href="{{ vich_uploader_asset(cv, 'cvFile') }}" download="CV-Damien-Lebon">
                 <button class="bg-color-hov"><img src="{{ asset('assets/images/telecharger-arrow.png')}}" alt="">Télécharger mon CV</button>
             </a>
             
@@ -140,162 +133,37 @@
     </div>
 
     <!--Mes services-->
-
     <div class="header-page">
         <h1>Mes <span class="color">Hard Skills</span></h1>
     </div> 
-
     <div class="containerCard-service">
-
+        {% for category in categories %}
         <div class="card-service bg-color-hov">
             <div class="service-img">
-                <img class="bg-color icon-service" src="{{ asset('assets/images/coding.png')}}" alt="service-one">
-                <h2>Langages</h2>
+                <img class="bg-color icon-service" src="{{ vich_uploader_asset(category, 'categorieFile') }}" alt="service-one">
+                <h2>{{ category.title }}</h2>
                 <img class="icon-arrow" src="{{ asset('assets/images/icon-arrow.png')}}" alt="arrow">
             </div>
             <div class="service-description">
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/html-5.png')}}" alt="">
-                    <p>HTML</p>
-                </div>
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/css-3.png')}}" alt="">
-                    <p>CSS</p>
-                </div>
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/js.png')}}" alt="">
-                    <p>Javascript</p>
-                </div>
-                
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/php.png')}}" alt="">
-                    <p>PHP</p>
-                </div>
-
+                {% for hardskill in category.hardskills %}
+                    <div class="service-description-content">
+                        <img src="{{ vich_uploader_asset(hardskill, 'hardSkillsFile') }}" alt="">
+                        <p>{{ hardskill.title }}</p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-
-        <div class="card-service bg-color-hov">
-            <div class="service-img">
-                <img class="bg-color icon-service" src="{{ asset('assets/images/iconCompetences/boite-a-outils.png')}}" alt="service-three">
-                <h2>Framework</h2>
-                <img class="icon-arrow" src="{{ asset('assets/images/icon-arrow.png')}}" alt="arrow">
-            </div>
-            <div class="service-description">
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/icons8-bootstrap-48.png')}}" alt="">
-                    <p>Bootstrap</p>
-                </div>
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/icons8-symfony-48.png')}}" alt="">
-                    <p>Symfony</p>
-                </div>
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/icons8-angularjs-48.png')}}" alt="">
-                    <p>Angular</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-service bg-color-hov">
-            <div class="service-img">
-                <img class="bg-color icon-service" src="{{ asset('assets/images/iconCompetences/tableau-de-palette-de-peinture-avec-pinceau.png')}}" alt="service-two">
-                <h2>Graphisme/Maquette</h2>
-                <img class="icon-arrow" src="{{ asset('assets/images/icon-arrow.png')}}" alt="arrow">
-            </div>
-            <div class="service-description">
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/figma.png')}}" alt="">
-                    <p>Figma</p>
-                </div>
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/icons8-canva-48.png')}}" alt="">
-                    <p>Canva</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-service bg-color-hov">
-            <div class="service-img">
-                <img class="bg-color icon-service" src="{{ asset('assets/images/iconCompetences/cms.png')}}" alt="service-three">
-                <h2>CMS</h2>
-                <img class="icon-arrow" src="{{ asset('assets/images/icon-arrow.png')}}" alt="arrow">
-            </div>
-            <div class="service-description">
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/icons8-wordpress-50.png')}}" alt="">
-                    <p>WordPress</p>
-                </div>
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/icons8-webflow-50.png')}}" alt="">
-                    <p>Webflow</p>
-                </div>
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/wix.png')}}" alt="">
-                    <p>Wix</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-service bg-color-hov">
-            <div class="service-img">
-                <img class="bg-color icon-service" src="{{ asset('assets/images/iconCompetences/planete-terre.png')}}" alt="service-three">
-                <h2>Environnement</h2>
-                <img class="icon-arrow" src="{{ asset('assets/images/icon-arrow.png')}}" alt="arrow">
-            </div>
-            <div class="service-description">
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/icons8-visual-studio-code-2019-48.png')}}" alt="">
-                    <p>Visual Studio Code</p>
-                </div>
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/git.png')}}" alt="">
-                    <p>Git Bash</p>
-                </div>
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/github.png')}}" alt="">
-                    <p>GitHub</p>
-                </div>
-
-                <div class="service-description-content">
-                    <img src="{{ asset('assets/images/iconCompetences/google.png')}}" alt="">
-                    <p>Google Workspace</p>
-                </div>
-            </div>
-        </div>
-
-        
+        {% endfor %}
     </div>
     
     <!--Compétences-->
-    
     <div class="header-page">
         <h1>Mes <span class="color">Soft Skills</span></h1>
     </div> 
-
     <div class="container-competences">
-
-        <h2 class="bg-color-hov">Autonome</h2>
-
-        <h2 class="bg-color-hov">Curieux</h2>
-
-        <h2 class="bg-color-hov">Positif</h2>
-
-        <h2 class="bg-color-hov">Rigoureux</h2>
-
+        {% for softSkill in softSkills %}
+            <h2 class="bg-color-hov">{{ softSkill.name }}</h2>
+        {% endfor %}
     </div>
-
-
 </div>
 {% endblock %}

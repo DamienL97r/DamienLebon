@@ -65,7 +65,7 @@ colorSquares.forEach(square => {
         color = "#c70039";
         break;
       case 'color-2':
-        color = "#481380";
+        color = "#7121c7";
         break;
       case 'color-3':
         color = "#04A777";

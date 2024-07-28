@@ -1,0 +1,34 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        cv_file:
+            uri_prefix: '%cv_file%'
+            upload_destination: '%kernel.project_dir%/public%cv_file%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_update: true
+            delete_on_remove: true
+        profile_image:
+            uri_prefix: '%profile_image%'
+            upload_destination: '%kernel.project_dir%/public%profile_image%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_update: true
+            delete_on_remove: true
+        categorie_file:
+            uri_prefix: '%categorie_file%'
+            upload_destination: '%kernel.project_dir%/public%categorie_file%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_update: true
+            delete_on_remove: true
+        hardskills_file:
+            uri_prefix: '%hardskills_file%'
+            upload_destination: '%kernel.project_dir%/public%hardskills_file%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_update: true
+            delete_on_remove: true
+        # blogpost_images:
+        #     uri_prefix: '%blogpost_images%'
+        #     upload_destination: '%kernel.project_dir%/public%blogpost_images%'
+        #     namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        #     delete_on_update: true
+        #     delete_on_remove: true

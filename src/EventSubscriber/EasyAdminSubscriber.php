@@ -3,6 +3,7 @@
 namespace App\EventSubscriber;
 
 use App\Entity\CV;
+use App\Entity\Experience;
 use App\Entity\ProfileImage;
 use App\Entity\Softskills;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
@@ -25,6 +26,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                 ['setCVUser', 10],
                 ['setProfileImageUser', 10],
                 ['setSoftskillsUser', 10],
+                ['setExperienceUser', 10],
             ],
         ];
     }
@@ -65,6 +67,21 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $entity = $event->getEntityInstance();
 
         if (!($entity instanceof Softskills)) {
+            return;
+        }
+
+        if (null === $entity->getUser()) {
+            $user = $this->security->getUser();
+            $entity->setUser($user);
+        }
+    }
+
+    // Experiences
+    public function setExperienceUser(BeforeEntityPersistedEvent $event)
+    {
+        $entity = $event->getEntityInstance();
+
+        if (!($entity instanceof Experience)) {
             return;
         }
 

@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\ExperienceRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ExperienceRepository::class)]
+#[Vich\Uploadable]
 class Experience
 {
     #[ORM\Id]
@@ -31,6 +34,9 @@ class Experience
 
     #[ORM\Column(length: 255)]
     private ?string $file = null;
+
+    #[Vich\UploadableField(mapping: 'exp_file', fileNameProperty: 'file')]
+    private ?File $experienceFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'experiences')]
     #[ORM\JoinColumn(nullable: false)]
@@ -123,5 +129,20 @@ class Experience
         $this->user = $user;
 
         return $this;
+    }
+
+    public function setExperienceFile(?File $file = null): void
+    {
+        $this->experienceFile = $file;
+        if (null !== $file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->file = $this->getFile();
+        }
+    }
+
+    public function getExperienceFile(): ?File
+    {
+        return $this->experienceFile;
     }
 }

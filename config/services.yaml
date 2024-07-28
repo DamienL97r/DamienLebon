@@ -8,6 +8,7 @@ parameters:
     profile_image: \uploads\images\profile_image
     categorie_file: \uploads\images\categorie_file
     hardskills_file: \uploads\images\hardskills_file
+    exp_file: \uploads\images\exp_file
     # blogpost_images: \uploads\images\blogposts
 
 services:

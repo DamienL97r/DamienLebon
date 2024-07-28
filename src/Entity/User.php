@@ -328,12 +328,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCV(?CV $cV): static
     {
         // unset the owning side of the relation if necessary
-        if ($cV === null && $this->cV !== null) {
+        if (null === $cV && null !== $this->cV) {
             $this->cV->setUser(null);
         }
 
         // set the owning side of the relation if necessary
-        if ($cV !== null && $cV->getUser() !== $this) {
+        if (null !== $cV && $cV->getUser() !== $this) {
             $cV->setUser($this);
         }
 
@@ -350,12 +350,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setProfileImage(?ProfileImage $profileImage): static
     {
         // unset the owning side of the relation if necessary
-        if ($profileImage === null && $this->profileImage !== null) {
+        if (null === $profileImage && null !== $this->profileImage) {
             $this->profileImage->setUser(null);
         }
 
         // set the owning side of the relation if necessary
-        if ($profileImage !== null && $profileImage->getUser() !== $this) {
+        if (null !== $profileImage && $profileImage->getUser() !== $this) {
             $profileImage->setUser($this);
         }
 

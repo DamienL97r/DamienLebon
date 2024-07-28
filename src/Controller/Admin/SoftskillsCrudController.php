@@ -4,8 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Softskills;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class SoftskillsCrudController extends AbstractCrudController

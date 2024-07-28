@@ -12,8 +12,7 @@ class ExperienceController extends AbstractController
     #[Route('/mes-experiences', name: 'experience')]
     public function index(
         ExperienceRepository $experienceRepository
-    ): Response
-    {
+    ): Response {
         return $this->render('experience/index.html.twig', [
             'experiences' => $experienceRepository->findAll(),
         ]);

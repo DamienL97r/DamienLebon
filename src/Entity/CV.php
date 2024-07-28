@@ -19,7 +19,6 @@ class CV
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
-
     #[Vich\UploadableField(mapping: 'cv_file', fileNameProperty: 'name')]
     private ?File $cvFile = null;
 

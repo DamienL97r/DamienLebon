@@ -10,9 +10,11 @@ readonly class UserService
     public function __construct(
         private EntityManagerInterface $manager,
         private UserRepository $userRepository
-    ) {}
+    ) {
+    }
 
-    public function getDev() {
+    public function getDev()
+    {
         return $this->userRepository->findDev();
     }
 }

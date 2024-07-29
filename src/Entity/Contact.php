@@ -29,6 +29,9 @@ class Contact
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $createdAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,5 +95,22 @@ class Contact
         $this->message = $message;
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->firstname;
     }
 }

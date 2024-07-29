@@ -26,72 +26,81 @@
         width: 80%
         text-align: center
         margin-bottom: 100px
+        padding-left: 10px
 
     h3 
         font-size: 1.8rem
         margin-bottom: 3rem
+        width: 100%
 
         @media (max-width: 600px)
-            margin-top: 20px
+            margin-top: 100px
 
     p 
         text-align: left
         font-size: 1rem
+        width: 90%
 
         span 
             font-size: 1.4rem
 
-form
-    label 
+#form
+    display: flex
+    flex-direction: column
+    justify-content: start
+    .form-label 
         display: flex
         flex-direction: column
         text-align: left
+        margin: 10px 0
 
-        p 
-            padding: 10px 0
-            font-size: 1.1rem
-
-            span 
-                font-size: 2rem
-
-        input 
-            width: 90%
-            height: 40px
+    .form-input 
+        width: 80%
+        height: 40px
+        margin-bottom: 0.7rem
+        padding: 0px 20px
+        background-color: rgb(5, 5, 5)
+        color: rgb(117, 117, 117)
+        border: none
+        border-radius: 8px
+        font-size: 1rem
+        font-weight: 600
+        outline: none
+        @media (max-width: 900px)
+            width: 80%
             margin-bottom: 0.7rem
-            padding: 0px 20px
-            background-color: rgb(5, 5, 5)
-            color: rgb(117, 117, 117)
-            border: none
-            border-radius: 8px
-            font-size: 1rem
-            font-weight: 600
-            outline: none
+        @media (max-width: 600px)
+            position: relative
+            z-index: 2
 
-            @media (max-width: 900px)
-                width: 85%
-                margin: 0% 5% 10% 5%
+    .form-textarea 
+        background-color: rgb(5, 5, 5)
+        color: #f5f5f5
+        border: none
+        border-radius: 8px
+        padding: 10px 20px
+        font-size: 1rem
+        font-weight: 600
+        max-width: 80%
+        min-width: 80%
+        max-height: 120px
+        min-height: 120px
+        outline: none
+        @media (max-width: 900px)
+            max-width: 80%
+            min-width: 80%
+            margin-bottom: 0.7rem
+        @media (max-width: 600px)
+            position: relative
+            z-index: 2
 
-            @media (max-width: 600px)
-                position: relative
-                z-index: 2
+    .form-btn-container
+        width: 80%
 
-        textarea 
-            background-color: rgb(5, 5, 5)
-            color: #f5f5f5
-            border: none
-            border-radius: 8px
-            padding: 10px 20px
-            font-size: 1rem
-            font-weight: 600
-            max-width: 90.1%
-            min-width: 90.1%
-            max-height: 120px
-            min-height: 120px
-            outline: none
-
-            @media (max-width: 600px)
-                position: relative
-                z-index: 2
+        @media (max-width: 900px)
+            width: 80%
+        @media (max-width: 600px)
+            width: 100%
 
     button 
         padding: 15px 30px
@@ -133,6 +142,9 @@ form
         padding-top: 2rem
         padding-bottom: 2rem
 
+        @media (max-width: 900px)
+            font-size: 1.8rem
+
 .contact-info-ligne 
     display: flex
     padding: 20px
@@ -170,9 +182,12 @@ form
     font-size: 1.3rem
 
     @media (max-width: 600px)
-        font-size: 1rem
+        font-size: 0.8rem
 
     h4 
         font-size: 1.5rem
         font-weight: bolder
         text-shadow: 0px 0px 15px rgb(0, 0, 0)
+
+        @media (max-width: 600px)
+            font-size: 1.2rem

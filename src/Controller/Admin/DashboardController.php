@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Categorie;
+use App\Entity\Contact;
 use App\Entity\CV;
 use App\Entity\Experience;
 use App\Entity\Hardskills;
@@ -43,5 +44,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Expériences', 'fas fa-newspaper', Experience::class);
         yield MenuItem::linkToCrud('Projets', 'fas fa-palette', Project::class);
         yield MenuItem::linkToCrud('Catégorie', 'fas fa-comments', Categorie::class);
+        yield MenuItem::linkToCrud('Messages', 'fas fa-comments', Contact::class);
     }
 }

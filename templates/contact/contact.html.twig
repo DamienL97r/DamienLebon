@@ -1,35 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block body %}
 <div class="container-contact" >
     <div class="formulaire">
         <h3><span class="color">Contactez</span> moi.</h3>
+        {% for message in app.flashes('success') %}
+            <div class="alert-success">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
         <p>Les champs avec <span class="color">(*)</span> sont obligatoires.</p>
-        <form id="form" action="https://formspree.io/f/mayzgrjq" method="POST">
-            <label for="lastname">
-                <p>Nom :<span class="color">*</span></p>
-                <input class="form-input" id="lastname" type="text" name="lastname" placeholder="Nom" required>
-            </label>
-            <label for="name">
-                <p>Prénom :<span class="color">*</span></p>
-                <input class="form-input" id="name" type="text" name="name" placeholder="Prénom" required>
-            </label>
-            <label for="email">
-                <p>E-mail :<span class="color">*</span></p>
-                <input class="form-input" id="email" type="email" name="email" placeholder="E-mail" required>
-            </label>
-            <label for="subject">
-                <p>Objet :</p>
-                <input class="form-input" id="subject" type="text" name="subject" placeholder="Objet">
-            </label>
-            <label for="message">
-                <p>Message :<span class="color">*</span></p>
-                <textarea class="form-input" name="message" id="message" cols="30" rows="10" placeholder="Entrez votre message ici..." required></textarea>
-            </label>
-            <button class="bg-color-hov" type="submit">Envoyer</button>
-        </form>
+        {{ form_start(form, {'attr': {'id': 'form'}}) }}
+            {{ form_label(form.lastname, 'Nom *', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.lastname, {'attr': {'class': 'form-input', 'placeholder': 'Nom'}}) }}
+    
+            {{ form_label(form.firstname, 'Prénom *', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.firstname, {'attr': {'class': 'form-input', 'placeholder': 'Prénom'}}) }}
+    
+            {{ form_label(form.email, 'Email *', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-input', 'placeholder': 'Email'}}) }}
+    
+            {{ form_label(form.subject, 'Objet *', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.subject, {'attr': {'class': 'form-input', 'placeholder': 'Objet'}}) }}
+    
+            {{ form_label(form.message, 'Message *', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.message, {'attr': {'class': 'form-input form-textarea', 'placeholder': 'Votre message'}}) }}
+            <div class="form-btn-container">
+                {{ form_row(form.envoyer, {'attr': {'class': 'bg-color-hov'}}) }}
+            </div>
+        {{ form_end(form) }}
     </div>
     <div class="card-contact" >
         <div class="container-contact-info">

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategorieRepository;
 use App\Services\CategoryService;
 use App\Services\ProjectService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,6 +19,14 @@ class PortfolioController extends AbstractController
         return $this->render('portfolio/index.html.twig', [
             'projects' => $projectService->getVisibleProjects(),
             'categories' => $categoryService->getProjectCategory(),
+        ]);
+    }
+
+    #[Route('/portfolio/{slug}', name: 'category_detail')]
+    public function category(string $slug, CategorieRepository $categorieRepository): Response 
+    {
+        return $this->render('portfolio/detail.html.twig', [
+            'categorie' => $categorieRepository->findOneBy(['slug' => $slug]),
         ]);
     }
 }

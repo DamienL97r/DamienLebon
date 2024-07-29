@@ -13,11 +13,9 @@
         <p><span class="color">Quelques projets </span>que j'ai pu réaliser seul ou en équipe...</p>
     </div>
     <div class="nav-portfolio">
-        <a class="bg-color-hov" href="#html-css-js">HTML CSS Javascript</a>
-        <a class="bg-color-hov" href="#features">Fonctionnalités</a>
-        <a class="bg-color-hov" href="#wireframe">Maquettes</a>
-        <a class="bg-color-hov" href="#cms">CMS</a>
-        <a class="bg-color-hov" href="#game">Jeux</a>
+        {% for category in categories %}
+            <a class="bg-color-hov" href="{{ path ('category_detail', {'slug': category.slug}) }}">{{ category.title }}</a>
+        {% endfor %}
     </div>
     {% for category in categories %}
         <div class="header-page">

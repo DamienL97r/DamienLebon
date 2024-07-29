@@ -7,7 +7,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -28,11 +27,11 @@ class ProjectCrudController extends AbstractCrudController
             SlugField::new('slug')
                 ->setTargetFieldName('title'),
             TextEditorField::new('description'),
-            BooleanField::new(('portfolio'))
+            BooleanField::new('portfolio')
                 ->hideOnIndex(),
             TextField::new('link')
                 ->hideOnIndex(),
-            AssociationField::new('categories'),
+            AssociationField::new('category'),
             DateField::new('createdAt'),
             TextField::new('projectFile')
                 ->setFormType(VichFileType::class)

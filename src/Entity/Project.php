@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -37,12 +35,6 @@ class Project
     #[ORM\Column]
     private ?bool $portfolio = null;
 
-    /**
-     * @var Collection<int, Categorie>
-     */
-    #[ORM\ManyToMany(targetEntity: Categorie::class, mappedBy: 'projects')]
-    private Collection $categories;
-
     #[ORM\ManyToOne(inversedBy: 'projects')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
@@ -53,10 +45,8 @@ class Project
     #[Vich\UploadableField(mapping: 'project_file', fileNameProperty: 'file')]
     private ?File $projectFile = null;
 
-    public function __construct()
-    {
-        $this->categories = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'projects')]
+    private ?Categorie $category = null;
 
     public function getId(): ?int
     {
@@ -135,33 +125,6 @@ class Project
         return $this;
     }
 
-    /**
-     * @return Collection<int, Categorie>
-     */
-    public function getCategories(): Collection
-    {
-        return $this->categories;
-    }
-
-    public function addCategory(Categorie $category): static
-    {
-        if (!$this->categories->contains($category)) {
-            $this->categories->add($category);
-            $category->addProject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Categorie $category): static
-    {
-        if ($this->categories->removeElement($category)) {
-            $category->removeProject($this);
-        }
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -199,5 +162,22 @@ class Project
     public function getProjectFile(): ?File
     {
         return $this->projectFile;
+    }
+
+    public function __toString(): string
+    {
+        return $this->title;
+    }
+
+    public function getCategory(): ?Categorie
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Categorie $category): static
+    {
+        $this->category = $category;
+
+        return $this;
     }
 }

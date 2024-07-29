@@ -40,4 +40,14 @@ class CategorieRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findProjectCategory(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.tag = :val')
+            ->setParameter('val', 'Projet')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

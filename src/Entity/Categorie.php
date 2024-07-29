@@ -24,12 +24,6 @@ class Categorie
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    /**
-     * @var Collection<int, Project>
-     */
-    #[ORM\ManyToMany(targetEntity: Project::class, inversedBy: 'categories')]
-    private Collection $projects;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
@@ -45,10 +39,16 @@ class Categorie
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $tag = null;
 
+    /**
+     * @var Collection<int, Project>
+     */
+    #[ORM\OneToMany(targetEntity: Project::class, mappedBy: 'category')]
+    private Collection $projects;
+
     public function __construct()
     {
-        $this->projects = new ArrayCollection();
         $this->hardskills = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,30 +76,6 @@ class Categorie
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Project>
-     */
-    public function getProjects(): Collection
-    {
-        return $this->projects;
-    }
-
-    public function addProject(Project $project): static
-    {
-        if (!$this->projects->contains($project)) {
-            $this->projects->add($project);
-        }
-
-        return $this;
-    }
-
-    public function removeProject(Project $project): static
-    {
-        $this->projects->removeElement($project);
 
         return $this;
     }
@@ -176,5 +152,35 @@ class Categorie
     public function __toString()
     {
         return $this->title;
+    }
+
+    /**
+     * @return Collection<int, Project>
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project): static
+    {
+        if (!$this->projects->contains($project)) {
+            $this->projects->add($project);
+            $project->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): static
+    {
+        if ($this->projects->removeElement($project)) {
+            // set the owning side to null (unless already changed)
+            if ($project->getCategory() === $this) {
+                $project->setCategory(null);
+            }
+        }
+
+        return $this;
     }
 }

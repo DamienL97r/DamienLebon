@@ -58,6 +58,10 @@ document.querySelectorAll('.bg-color').forEach(el => {
   el.style.backgroundColor = color;
 });
 
+document.querySelectorAll('.signin').forEach(el => {
+  el.style.boxShadow = `0 0 35px ${color}`;
+});
+
 colorSquares.forEach(square => {
   square.addEventListener('click', function() {
     switch (this.id) {
@@ -86,6 +90,9 @@ colorSquares.forEach(square => {
     });
     document.querySelectorAll('.bg-color').forEach(el => {
       el.style.backgroundColor = color;
+    });
+    document.querySelectorAll('.signin').forEach(el => {
+      el.style.boxShadow = `0 0 35px ${color}`;
     });
   });
 });

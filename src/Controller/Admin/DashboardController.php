@@ -6,6 +6,7 @@ use App\Entity\Categorie;
 use App\Entity\Contact;
 use App\Entity\CV;
 use App\Entity\Experience;
+use App\Entity\Gallery;
 use App\Entity\Hardskills;
 use App\Entity\ProfileImage;
 use App\Entity\Project;
@@ -37,6 +38,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('A propos', 'fas fa-cog')->setSubItems([
             MenuItem::linkToCrud('Utilisateur', 'fas fa-cog', User::class),
             MenuItem::linkToCrud('CV', 'fas fa-cog', CV::class),
+            MenuItem::linkToCrud('Gallerie', 'fas fa-comments', Gallery::class),
             MenuItem::linkToCrud('Photo', 'fas fa-cog', ProfileImage::class),
             MenuItem::linkToCrud('Hardskills', 'fas fa-comments', Hardskills::class),
             MenuItem::linkToCrud('Softskills', 'fas fa-comments', Softskills::class),

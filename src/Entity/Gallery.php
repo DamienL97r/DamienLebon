@@ -63,7 +63,7 @@ class Gallery
         return $this->isVisible;
     }
 
-    public function setVisible(bool $isVisible): static
+    public function setIsVisible(bool $isVisible): self
     {
         $this->isVisible = $isVisible;
 

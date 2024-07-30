@@ -11,8 +11,11 @@
     <div class="header-page">
         <h1><span class="color">{{ categorie.title }}</span></h1>
     </div>
-    <div class="nav-portfolio">
-        <a class="bg-color-hov" href="{{ path ('portfolio') }}">Retour à la liste</a>
+    <div class="back-btn">
+        <a class="bg-color-hov" href="{{ path ('portfolio') }}">
+            <img src="{{ asset('assets/images/icon-arrow.png')}}" alt="arrow">
+            Retour
+        </a>
     </div>
     {% for project in categorie.projects %}
         {% if project.portfolio %}

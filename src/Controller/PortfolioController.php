@@ -23,7 +23,7 @@ class PortfolioController extends AbstractController
     }
 
     #[Route('/portfolio/{slug}', name: 'category_detail')]
-    public function category(string $slug, CategorieRepository $categorieRepository): Response 
+    public function category(string $slug, CategorieRepository $categorieRepository): Response
     {
         return $this->render('portfolio/detail.html.twig', [
             'categorie' => $categorieRepository->findOneBy(['slug' => $slug]),

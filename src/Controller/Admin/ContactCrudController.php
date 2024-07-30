@@ -9,7 +9,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 
 class ContactCrudController extends AbstractCrudController
 {
@@ -34,7 +33,7 @@ class ContactCrudController extends AbstractCrudController
     {
         $replyEmailAction = Action::new('replyEmail', 'Répondre')
             ->linkToUrl(function (Contact $contact) {
-                return 'mailto:' . $contact->getEmail();
+                return 'mailto:'.$contact->getEmail();
             })
             ->setHtmlAttributes(['target' => '_blank']);
 

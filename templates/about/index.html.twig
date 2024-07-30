@@ -4,132 +4,29 @@
 
 {% block body %}
 <div class="aPropos">
-
     <div class="header-page">
     <h1>À propos de <span class="color">moi</span></h1>
     <p><span class="color">Qui-</span>suis-je?</p>
     </div>  
-
     <div class="container-aPropos">
-
         <div class="gauche-aPropos">
             {{ user.description | raw }}
-
             <a href="{{ vich_uploader_asset(cv, 'cvFile') }}" download="CV-Damien-Lebon">
                 <button class="bg-color-hov"><img src="{{ asset('assets/images/telecharger-arrow.png')}}" alt="">Télécharger mon CV</button>
             </a>
-            
         </div>
-
-        
         <div class="droite-aPropos">
             <div class="container-gallerie-lbjs">
-
-                <!--Photo-pro-->
-
-                <a class="lb-img" data-fslightbox="gallery" href="{{ asset('assets/images/photo-pro/photo-pro-DamienLebon.jpg')}}">
-                    <img src="{{ asset('assets/images/non-modifie/small-500-500/photo-pro-SM-500.jpg')}}" alt="">
-                </a>
-
-                <!--Integration wireframe-->
-
-                <a class="lb-img" data-fslightbox="gallery" href="{{ asset('assets/images/non-modifie/int-maquette-photographe.png')}}">
-                    <img src="{{ asset('assets/images/non-modifie/small-500-500/int-maquette-photographe-SM-500.png')}}" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="{{ asset('assets/images/non-modifie/cv-en-ligne.png')}}">
-                    <img src="{{ asset('assets/images/non-modifie/small-500-500/cv-en-ligne-SM-500.png')}}" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/int-maquette-find-fitness.png">
-                    <img src="images/non-modifie/small-500-500/int-maquette-find-fitness-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/int-maquette-ville-futuriste.png">
-                    <img src="images/non-modifie/small-500-500/int-maquette-ville-futuriste-SM-500.jpg" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/int-maquette-proclean-pressing.png">
-                    <img src="images/non-modifie/small-500-500/int-maquette-proclean-pressing-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/int-maquette-motor-expert.png">
-                    <img src="images/non-modifie/small-500-500/int-maquette-motor-expert-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/tuto-tacos-lyon.png">
-                    <img src="images/non-modifie/small-500-500/tuto-tacos-lyon-SM-500.png" alt="">
-                </a>
-
-                <!--Fonctionnalites-->
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/feature-her-banner-slider.png">
-                    <img src="images/non-modifie/small-500-500/feature-her-banner-slider-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/feature-search-bar.png">
-                    <img src="images/non-modifie/small-500-500/feature-search-bar-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/feature-img-gallery.png">
-                    <img src="images/non-modifie/small-500-500/feature-img-gallery-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/feature-calculator.png">
-                    <img src="images/non-modifie/small-500-500/feature-calculator-SM-500.png" alt="">
-                </a>
-
-
-                <!--Wireframe-->
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/wireframe-cocoon.png">
-                    <img src="images/non-modifie/small-500-500/wireframe-cocoon-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/wireframe-business-case.png">
-                    <img src="images/non-modifie/small-500-500/wireframe-business-case-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/wireframe-secdron.png">
-                    <img src="images/non-modifie/small-500-500/wireframe-secdron-SM-500.png" alt="">
-                </a>
-
-                <!--CMS-->
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/cms-amongzus.png">
-                    <img src="images/non-modifie/small-500-500/cms-amongzus-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/cms-connectus.png">
-                    <img src="images/non-modifie/small-500-500/cms-connectus-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/cms-mfestival.png">
-                    <img src="images/non-modifie/small-500-500/cms-mfestival-SM-500.png" alt="">
-                </a>
-
-                <!--Game-->
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/game-morpion.png">
-                    <img src="images/non-modifie/small-500-500/game-morpion-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/game-pianonline.png">
-                    <img src="images/non-modifie/small-500-500/game-pianonline-SM-500.png" alt="">
-                </a>
-
-                <a class="lb-img" data-fslightbox="gallery" href="images/non-modifie/game-pokedex.png">
-                    <img src="images/non-modifie/small-500-500/game-pokedex-SM-500.png" alt="">
-                </a>
-
+                {% for image in images %}
+                    <a class="lb-img" data-fslightbox="gallery" href="{{ vich_uploader_asset(image, 'galleryFile') }}">
+                        <img src="{{ vich_uploader_asset(image, 'galleryFile') }}" alt="">
+                    </a>
+                {% endfor %}
             </div>
-
             <div class="droite-aPropos-btn">
                 <a href="portfolio.html" class="bg-color-hov">Voir mon portfolio</a>
             </div>
-            
         </div>
-
     </div>
 
     <!--Mes services-->
@@ -155,7 +52,7 @@
         </div>
         {% endfor %}
     </div>
-    
+
     <!--Compétences-->
     <div class="header-page">
         <h1>Mes <span class="color">Soft Skills</span></h1>

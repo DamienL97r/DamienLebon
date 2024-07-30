@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\GalleryRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: GalleryRepository::class)]
+#[Vich\Uploadable]
 class Gallery
 {
     #[ORM\Id]
@@ -16,6 +19,9 @@ class Gallery
 
     #[ORM\Column(length: 255)]
     private ?string $file = null;
+
+    #[Vich\UploadableField(mapping: 'gallery_file', fileNameProperty: 'file')]
+    private ?File $galleryFile = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
@@ -62,5 +68,20 @@ class Gallery
         $this->isVisible = $isVisible;
 
         return $this;
+    }
+
+    public function setGalleryFile(?File $file = null): void
+    {
+        $this->galleryFile = $file;
+        if (null !== $file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->createdAt = new \DateTime('now');
+        }
+    }
+
+    public function getGalleryFile(): ?File
+    {
+        return $this->galleryFile;
     }
 }

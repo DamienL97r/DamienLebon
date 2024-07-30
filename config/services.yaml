@@ -10,7 +10,7 @@ parameters:
     hardskills_file: \uploads\images\hardskills_file
     exp_file: \uploads\images\exp_file
     project_file: \uploads\images\project_file
-    # blogpost_images: \uploads\images\blogposts
+    gallery_file: \uploads\images\gallery_file
 
 services:
     # default configuration for services in *this* file

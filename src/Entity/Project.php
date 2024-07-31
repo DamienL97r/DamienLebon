@@ -39,7 +39,7 @@ class Project
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $file = null;
 
     #[Vich\UploadableField(mapping: 'project_file', fileNameProperty: 'file')]
@@ -142,7 +142,7 @@ class Project
         return $this->file;
     }
 
-    public function setFile(string $file): static
+    public function setFile(?string $file): static
     {
         $this->file = $file;
 

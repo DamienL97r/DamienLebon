@@ -19,7 +19,7 @@ class Hardskills
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'hardskills_file', fileNameProperty: 'image')]
@@ -27,6 +27,9 @@ class Hardskills
 
     #[ORM\ManyToOne(inversedBy: 'hardskills')]
     private ?Categorie $categorie = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -50,7 +53,7 @@ class Hardskills
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(?string $image): static
     {
         $this->image = $image;
 
@@ -73,14 +76,25 @@ class Hardskills
     {
         $this->hardSkillsFile = $image;
         if (null !== $image) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->image = $this->getImage();
+            // If there is a file, update the updatedAt field
+            $this->updatedAt = new \DateTimeImmutable('now');
         }
     }
 
     public function getHardSkillsFile(): ?File
     {
         return $this->hardSkillsFile;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
     }
 }

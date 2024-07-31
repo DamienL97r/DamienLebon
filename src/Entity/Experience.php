@@ -32,11 +32,14 @@ class Experience
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateEnd = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $file = null;
 
     #[Vich\UploadableField(mapping: 'exp_file', fileNameProperty: 'file')]
     private ?File $experienceFile = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'experiences')]
     #[ORM\JoinColumn(nullable: false)]
@@ -112,7 +115,7 @@ class Experience
         return $this->file;
     }
 
-    public function setFile(string $file): static
+    public function setFile(?string $file): static
     {
         $this->file = $file;
 
@@ -135,14 +138,25 @@ class Experience
     {
         $this->experienceFile = $file;
         if (null !== $file) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->file = $this->getFile();
+            // If there is a file, update the updatedAt field
+            $this->updatedAt = new \DateTimeImmutable('now');
         }
     }
 
     public function getExperienceFile(): ?File
     {
         return $this->experienceFile;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
     }
 }

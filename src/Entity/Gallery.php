@@ -17,7 +17,7 @@ class Gallery
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $file = null;
 
     #[Vich\UploadableField(mapping: 'gallery_file', fileNameProperty: 'file')]

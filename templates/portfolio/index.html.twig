@@ -25,7 +25,7 @@
             {% if project.portfolio %}
                 <div class="container-projet" >
                     <div class="projet-image" >
-                        <img src="{{ vich_uploader_asset(project, 'projectFile') }}" alt="portfolio-first">
+                        <img src="{{ vich_uploader_asset(project, 'projectFile') | imagine_filter('portfolio') }}" alt="portfolio-first">
                     </div>
                     <div class="projet-text" >
                         <h2><span class="color">{{ project.title }}</h2>

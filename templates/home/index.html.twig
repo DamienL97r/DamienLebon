@@ -6,7 +6,7 @@
 <div class="main-photo-container bg-color">
     <div class="secondary-photo-container">
     </div>
-    <img src="{{ vich_uploader_asset(profileImage, 'profileImageFile') }}" alt="">
+    <img src="{{ vich_uploader_asset(profileImage, 'profileImageFile') | imagine_filter('profile_picture') }}" alt="">
 </div>
 
 <div class="background-image" ></div>  

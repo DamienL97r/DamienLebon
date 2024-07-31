@@ -10,6 +10,7 @@ composer require fakerphp/faker
 composer require symfony/webpack-encore-bundle
 composer require easycorp/easyadmin-bundle
 composer require vich/uploader-bundle
+composer require liip/imagine-bundle
 ```
 
 ## Création BDD du projet

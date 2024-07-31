@@ -18,8 +18,8 @@
         <div class="droite-aPropos">
             <div class="container-gallerie-lbjs">
                 {% for image in images %}
-                    <a class="lb-img" data-fslightbox="gallery" href="{{ vich_uploader_asset(image, 'galleryFile') }}">
-                        <img src="{{ vich_uploader_asset(image, 'galleryFile') }}" alt="">
+                    <a class="lb-img" data-fslightbox="gallery" href="{{ vich_uploader_asset(image, 'galleryFile') | imagine_filter('about_gallery_full') }}">
+                        <img src="{{ vich_uploader_asset(image, 'galleryFile') | imagine_filter('about_gallery_thumbnail') }}" alt="">
                     </a>
                 {% endfor %}
             </div>

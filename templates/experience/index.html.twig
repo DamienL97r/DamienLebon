@@ -12,7 +12,7 @@
     {% for exp in experiences %}
         <div class="card-exp">
             <div class="img-date-title">
-                <img src="{{ vich_uploader_asset(exp, 'experienceFile') }}" alt="">
+                <img src="{{ vich_uploader_asset(exp, 'experienceFile') | imagine_filter('experiences') }}" alt="">
                 <div class="blog-date bg-color">
                     <p>{{ exp.dateStart|date('m-Y') }} - {{ exp.dateEnd|date('m-Y') }}</p>
                 </div>

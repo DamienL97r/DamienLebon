@@ -2,4 +2,8 @@
 
 {% block content %}
     <h1>ADMIN</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="bg-color-hov" href="{{ path('accueil')}}">Retour à l'accueil</a>
+    {% endif %}
 {% endblock %}

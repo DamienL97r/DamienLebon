@@ -22,15 +22,20 @@ class GalleryCrudController extends AbstractCrudController
         return [
             TextField::new('file')
                 ->onlyOnIndex(),
+            BooleanField::new('isVisible'),
+            TextField::new('galleryFile')
+                ->setFormType(VichImageType::class)
+                ->setFormTypeOptions([
+                    'required' => false,
+                    'allow_delete' => true,
+                    'download_uri' => false,
+                    'download_label' => false,
+                    'asset_helper' => true,
+                ])
+                ->hideOnIndex(),
             ImageField::new('file')
                 ->setBasePath('/uploads/images/gallery_file/')
                 ->onlyOnIndex(),
-            BooleanField::new('isVisible'),
-            DateField::new('createdAt')
-                ->hideOnForm(),
-            TextField::new('galleryFile')
-                ->setFormType(VichImageType::class)
-                ->hideOnIndex(),
         ];
     }
 }

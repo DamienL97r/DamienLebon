@@ -62,6 +62,8 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             $user = $this->security->getUser();
             $entity->setUser($user);
         }
+
+        $entity->setProfileImageFile(null);
     }
 
     // SoftSkills

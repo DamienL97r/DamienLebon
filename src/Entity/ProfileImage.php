@@ -25,6 +25,9 @@ class ProfileImage
     #[ORM\OneToOne(inversedBy: 'profileImage')]
     private ?User $user = null;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -47,25 +50,34 @@ class ProfileImage
         return $this->user;
     }
 
-    public function setUser(?User $user): static
+    public function setUser(?User $user): void
     {
         $this->user = $user;
+    }
+
+    public function setProfileImageFile(?File $imageFile = null): void
+    {
+        $this->profileImageFile = $imageFile;
+        if (null !== $imageFile) {
+            // If there is a file, update the updatedAt field
+            $this->updatedAt = new \DateTimeImmutable('now');
+        }
+    }
+
+    public function getProfileImageFile(): ?File
+    {
+        return $this->profileImageFile;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function setprofileImageFile(?File $imageFile = null): void
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        $this->profileImageFile = $imageFile;
-        if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->name = $this->getName();
-        }
-    }
-
-    public function getprofileImageFile(): ?File
-    {
-        return $this->profileImageFile;
+        return $this->updatedAt;
     }
 }

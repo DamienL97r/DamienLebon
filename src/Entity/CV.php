@@ -25,6 +25,9 @@ class CV
     #[ORM\OneToOne(inversedBy: 'cV')]
     private ?User $user = null;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,10 +48,10 @@ class CV
     public function setCvFile(?File $cv = null): void
     {
         $this->cvFile = $cv;
+
         if (null !== $cv) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->name = $this->getName();
+            // If there is a file, update the updatedAt field
+            $this->updatedAt = new \DateTimeImmutable('now');
         }
     }
 
@@ -62,10 +65,20 @@ class CV
         return $this->user;
     }
 
-    public function setUser(?User $user): static
+    public function setUser(?User $user): void
     {
         $this->user = $user;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
     }
 }

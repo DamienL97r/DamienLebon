@@ -393,4 +393,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function __serialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'roles' => $this->roles,
+            'password' => $this->password,
+            'phoneNumber' => $this->phoneNumber,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'dateOfBirth' => $this->dateOfBirth,
+            'description' => $this->description,
+            'github' => $this->github,
+            'linkedin' => $this->linkedin,
+            'location' => $this->location,
+            'projects' => $this->projects,
+            'experiences' => $this->experiences,
+            'softskills' => $this->softskills,
+            'cvName' => $this->cV ? $this->cV->getName() : null,
+            'profileImageName' => $this->profileImage ? $this->profileImage->getName() : null,
+        ];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        $this->id = $data['id'] ?? null;
+        $this->email = $data['email'] ?? null;
+        $this->roles = $data['roles'] ?? [];
+        $this->password = $data['password'] ?? null;
+        $this->phoneNumber = $data['phoneNumber'] ?? null;
+        $this->firstname = $data['firstname'] ?? null;
+        $this->lastname = $data['lastname'] ?? null;
+        $this->dateOfBirth = $data['dateOfBirth'] ?? null;
+        $this->description = $data['description'] ?? null;
+        $this->github = $data['github'] ?? null;
+        $this->linkedin = $data['linkedin'] ?? null;
+        $this->location = $data['location'] ?? null;
+        $this->projects = $data['projects'] ?? new ArrayCollection();
+        $this->experiences = $data['experiences'] ?? new ArrayCollection();
+        $this->softskills = $data['softskills'] ?? new ArrayCollection();
+        // Handle CV and ProfileImage separately if needed
+    }
 }

@@ -30,6 +30,9 @@ class Categorie
     #[Vich\UploadableField(mapping: 'categorie_file', fileNameProperty: 'image')]
     private ?File $categorieFile = null;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
+
     /**
      * @var Collection<int, Hardskills>
      */
@@ -126,9 +129,8 @@ class Categorie
     {
         $this->categorieFile = $image;
         if (null !== $image) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->image = $this->getImage();
+            // If there is a file, update the updatedAt field
+            $this->updatedAt = new \DateTimeImmutable('now');
         }
     }
 
@@ -182,5 +184,17 @@ class Categorie
         }
 
         return $this;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
     }
 }

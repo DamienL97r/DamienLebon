@@ -25,13 +25,6 @@ class GalleryCrudController extends AbstractCrudController
             BooleanField::new('isVisible'),
             TextField::new('galleryFile')
                 ->setFormType(VichImageType::class)
-                ->setFormTypeOptions([
-                    'required' => false,
-                    'allow_delete' => true,
-                    'download_uri' => false,
-                    'download_label' => false,
-                    'asset_helper' => true,
-                ])
                 ->hideOnIndex(),
             ImageField::new('file')
                 ->setBasePath('/uploads/images/gallery_file/')

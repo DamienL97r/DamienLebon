@@ -2,6 +2,7 @@
 
 namespace App\EventSubscriber;
 
+use App\Entity\Categorie;
 use App\Entity\CV;
 use App\Entity\Experience;
 use App\Entity\ProfileImage;
@@ -29,6 +30,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                 ['setSoftskillsUser', 10],
                 ['setExperienceUser', 10],
                 ['setProjectUser', 10],
+                ['setCategoryDate', 10],
             ],
         ];
     }
@@ -108,6 +110,21 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         if (null === $entity->getUser()) {
             $user = $this->security->getUser();
             $entity->setUser($user);
+        }
+    }
+
+    // Category
+    public function setCategoryDate(BeforeEntityPersistedEvent $event)
+    {
+        $entity = $event->getEntityInstance();
+
+        if (!($entity instanceof Categorie)) {
+            return;
+        }
+
+        if (null === $entity->getUpdatedAt()) {
+            $now = new \DateTime('now');
+            $entity->setUpdatedAt($now);
         }
     }
 }

@@ -11,6 +11,7 @@ composer require symfony/webpack-encore-bundle
 composer require easycorp/easyadmin-bundle
 composer require vich/uploader-bundle
 composer require liip/imagine-bundle
+composer require symfony/twig-pack
 ```
 
 ## Création BDD du projet

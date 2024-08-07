@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}Erreur{% endblock %}
+{% block body %}
+<div class="body-404">
+    <div class="body-404__erreur404-message">
+        <h2>Désolé !</h2>
+        <p>Une erreur est survenue.</p>
+    </div>
+    <div class="body-404__erreur404-btn-container">
+        <a class="bg-color-hov" href="{{ path('accueil') }}">Retour à l'accueil</a>
+    </div>
+</div>
+{% endblock %}

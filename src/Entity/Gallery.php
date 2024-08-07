@@ -40,11 +40,11 @@ class Gallery
     }
 
     public function setFile(?string $file): static
-{
-    $this->file = $file;
+    {
+        $this->file = $file;
 
-    return $this;
-}
+        return $this;
+    }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {

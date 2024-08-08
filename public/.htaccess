@@ -1,0 +1,31 @@
+# Use the front controller as index file. It serves as a fallback solution when
+# every other rewrite/redirect fails (e.g. in an unfriendly URL environment)
+DirectoryIndex index.php
+
+# By default, Apache does not allow access to .htaccess files. Allow access
+<Files ".htaccess">
+    Require all granted
+</Files>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # If you are using a subdirectory to maintain multiple environments, you
+    # can use the following line instead of RewriteRule ^ %{ENV:BASE}/index.php [L]
+    # RewriteBase /
+
+    # Redirect to the front controller
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    <IfModule mod_alias.c>
+        # When mod_rewrite is not available, we instruct a temporary redirect of
+        # the start page to the front controller explicitly so that the website
+        # and the generated links can still be used.
+        RedirectMatch 302 ^/$ /index.php/
+        # RedirectTemp cannot be used instead
+    </IfModule>
+</IfModule>

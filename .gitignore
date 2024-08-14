@@ -38,7 +38,5 @@ yarn-error.log
 /public/media/cache/
 ###< liip/imagine-bundle ###
 
-### zip
+### prod
 /www
-
-productionAdvice.txt

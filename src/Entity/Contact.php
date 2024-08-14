@@ -32,6 +32,9 @@ class Contact
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[ORM\Column]
+    private ?bool $isSend = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -112,5 +115,17 @@ class Contact
     public function __toString()
     {
         return $this->firstname;
+    }
+
+    public function isSend(): ?bool
+    {
+        return $this->isSend;
+    }
+
+    public function setSend(bool $isSend): static
+    {
+        $this->isSend = $isSend;
+
+        return $this;
     }
 }

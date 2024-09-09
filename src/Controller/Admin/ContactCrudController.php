@@ -40,7 +40,8 @@ class ContactCrudController extends AbstractCrudController
         return $actions
             ->add(Crud::PAGE_INDEX, $replyEmailAction)
             ->add(Crud::PAGE_DETAIL, $replyEmailAction)
-            ->disable(Action::NEW, Action::EDIT);
+            ->disable(Action::NEW, Action::EDIT)
+            ->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
 
     public function configureCrud(Crud $crud): Crud

@@ -27,6 +27,7 @@ class ContactController extends AbstractController
             $contact = $form->getData();
 
             $contact->setCreatedAt(new \DateTime('now'));
+            $contact->setSend(false);
             $entityManager->persist($contact);
             $entityManager->flush();
 

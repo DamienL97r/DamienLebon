@@ -15,7 +15,7 @@ use Symfony\Component\Mime\Email;
 
 #[AsCommand(
     name: 'app:send-contact',
-    description: 'Add a short description for your command',
+    description: 'check if messages are sent and send them if they are not send',
 )]
 class SendContactCommand extends Command
 {

@@ -9,6 +9,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
@@ -24,12 +25,14 @@ class SendContactCommand extends Command
     private $mailer;
     private $contactService;
     public function __construct(
+        #[Autowire('%admin_email%')] private string $adminEmail,
         ContactRepository $contactRepository,
         MailerInterface $mailer,
         UserRepository $userRepository,
         ContactService $contactService
     )
     {
+        $this->adminEmail = $adminEmail;
         $this->contactRepository = $contactRepository;
         $this->mailer = $mailer;
         $this->userRepository = $userRepository;
@@ -42,7 +45,7 @@ class SendContactCommand extends Command
         $output->writeln('Début de l\'exécution de la commande.');
 
         $toSend = $this->contactRepository->findBy(['isSend' => false]);
-        $adress = new Address($this->userRepository->findDev()->getEmail(), $this->userRepository->findDev()->getFirstname() . ' ' . $this->userRepository->findDev()->getLastname());
+        $adress = new Address($this->adminEmail);
 
         foreach ($toSend as $mail) {
             $email = (new Email())

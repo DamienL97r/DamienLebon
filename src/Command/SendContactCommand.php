@@ -3,7 +3,6 @@
 namespace App\Command;
 
 use App\Repository\ContactRepository;
-use App\Repository\UserRepository;
 use App\Services\ContactService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -21,21 +20,17 @@ use Symfony\Component\Mime\Email;
 class SendContactCommand extends Command
 {
     private $contactRepository;
-    private $userRepository;
     private $mailer;
     private $contactService;
     public function __construct(
         #[Autowire('%admin_email%')] private string $adminEmail,
         ContactRepository $contactRepository,
         MailerInterface $mailer,
-        UserRepository $userRepository,
         ContactService $contactService
     )
     {
-        $this->adminEmail = $adminEmail;
         $this->contactRepository = $contactRepository;
         $this->mailer = $mailer;
-        $this->userRepository = $userRepository;
         $this->contactService = $contactService;
         parent::__construct();
     }
@@ -57,7 +52,6 @@ class SendContactCommand extends Command
             $this->mailer->send($email);
 
             try {
-                $this->mailer->send($email);
                 $output->writeln('Email envoyé à ' . $adress->getAddress());
             } catch (\Exception $e) {
                 $output->writeln('Erreur lors de l\'envoi de l\'email: ' . $e->getMessage());

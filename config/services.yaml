@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    admin_email: 'damien.lebon.pro1@gmail.com'
+    admin_email: '%env(ADMIN_EMAIL)%'
     cv_file: \uploads\images\cv_file
     profile_image: \uploads\images\profile_image
     categorie_file: \uploads\images\categorie_file

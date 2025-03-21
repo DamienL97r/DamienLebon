@@ -15,7 +15,7 @@ class AboutController extends AbstractController
     public function index(
         UserService $user,
         CategorieRepository $categorieRepository,
-        GalleryRepository $galleryRepository
+        GalleryRepository $galleryRepository,
     ): Response {
         return $this->render('about/index.html.twig', [
             'user' => $user->getDev(),

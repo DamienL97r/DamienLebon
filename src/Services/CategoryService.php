@@ -9,7 +9,7 @@ readonly class CategoryService
 {
     public function __construct(
         private EntityManagerInterface $manager,
-        private CategorieRepository $categorieRepository
+        private CategorieRepository $categorieRepository,
     ) {
     }
 

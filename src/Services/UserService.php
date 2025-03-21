@@ -9,7 +9,7 @@ readonly class UserService
 {
     public function __construct(
         private EntityManagerInterface $manager,
-        private UserRepository $userRepository
+        private UserRepository $userRepository,
     ) {
     }
 

@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 readonly class ContactService
 {
     public function __construct(
-        private EntityManagerInterface $manager
+        private EntityManagerInterface $manager,
     ) {
     }
 

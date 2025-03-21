@@ -13,7 +13,7 @@ class SitemapController extends AbstractController
     #[Route('/sitemap.xml', name: 'sitemap', format: 'xml')]
     public function index(
         Request $request,
-        CategoryService $categoryService
+        CategoryService $categoryService,
     ): Response {
         $hostname = $request->getSchemeAndHttpHost();
 

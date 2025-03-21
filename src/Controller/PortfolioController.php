@@ -14,7 +14,7 @@ class PortfolioController extends AbstractController
     #[Route('/portfolio', name: 'portfolio')]
     public function index(
         ProjectService $projectService,
-        CategoryService $categoryService
+        CategoryService $categoryService,
     ): Response {
         return $this->render('portfolio/index.html.twig', [
             'projects' => $projectService->getVisibleProjects(),

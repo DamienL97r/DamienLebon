@@ -9,7 +9,7 @@ readonly class ProjectService
 {
     public function __construct(
         private EntityManagerInterface $manager,
-        private ProjectRepository $projectRepository
+        private ProjectRepository $projectRepository,
     ) {
     }
 

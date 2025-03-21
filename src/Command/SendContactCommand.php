@@ -22,13 +22,13 @@ class SendContactCommand extends Command
     private $contactRepository;
     private $mailer;
     private $contactService;
+
     public function __construct(
         #[Autowire('%admin_email%')] private string $adminEmail,
         ContactRepository $contactRepository,
         MailerInterface $mailer,
-        ContactService $contactService
-    )
-    {
+        ContactService $contactService,
+    ) {
         $this->contactRepository = $contactRepository;
         $this->mailer = $mailer;
         $this->contactService = $contactService;
@@ -46,19 +46,20 @@ class SendContactCommand extends Command
             $email = (new Email())
                 ->from($mail->getEmail())
                 ->to($adress)
-                ->subject('Nouveau message de ' . $mail->getFirstname() . ' ' . $mail->getLastname())
+                ->subject('Nouveau message de '.$mail->getFirstname().' '.$mail->getLastname())
                 ->text($mail->getMessage());
 
             $this->mailer->send($email);
 
             try {
-                $output->writeln('Email envoyé à ' . $adress->getAddress());
+                $output->writeln('Email envoyé à '.$adress->getAddress());
             } catch (\Exception $e) {
-                $output->writeln('Erreur lors de l\'envoi de l\'email: ' . $e->getMessage());
+                $output->writeln('Erreur lors de l\'envoi de l\'email: '.$e->getMessage());
             }
 
             $this->contactService->isSend($mail);
         }
+
         return Command::SUCCESS;
     }
 }

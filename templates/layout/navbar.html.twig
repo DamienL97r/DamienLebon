@@ -17,25 +17,28 @@
 
 <!--MENU DE NAV-->  
 <nav id="menu">
+    <div class="logo">
+        <img src="{{ asset('assets/images/logo-white.svg')}}" alt="logo-white DL WEB">
+    </div>
     <ul>
         <li>
-            <a class="onglet" href="{{ path('accueil')}}" target="" >Accueil</a>
+            <a class="onglet" href="{{ path('accueil')}}" >Accueil</a>
             <p class="hover-text" id="home">ACCUEIL</p>
         </li>
         <li>
-            <a class="onglet" href="{{ path('a_propos')}}" target="" >À propos</a>
+            <a class="onglet" href="{{ path('a_propos')}}" >À propos</a>
             <p class="hover-text" id="about" >À PROPOS</p>
         </li>
         <li>
-            <a class="onglet" href="{{ path('experience')}}" target="" >Expériences</a>
+            <a class="onglet" href="{{ path('experience')}}" >Expériences</a>
             <p class="hover-text" id="blog" >EXPÉRIENCES</p>
         </li>
         <li>
-            <a class="onglet" href="{{ path('portfolio')}}" target="" >Portfolio</a>
+            <a class="onglet" href="{{ path('portfolio')}}">Portfolio</a>
             <p class="hover-text" id="portfolio" >PORTFOLIO</p>
         </li>
         <li>
-            <a class="onglet" href="{{ path('contact')}}" target="" >Contact</a>
+            <a class="onglet" href="{{ path('contact')}}">Contact</a>
             <p class="hover-text" id="contact" >CONTACT</p>
         </li>
     </ul>
